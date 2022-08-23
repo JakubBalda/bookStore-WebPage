@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/books', [HttpClient::class, 'getBooks']);
+Route::get('/books', [HttpClient::class, 'getBooks'])->name('books');
 
 Route::get('/getDetails', [HttpClient::class, 'getDetails']);
 

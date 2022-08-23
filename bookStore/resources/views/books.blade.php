@@ -14,15 +14,28 @@
         <div class="content-wrapper">
             
             @foreach($books as $book)
-            <div class="card d-flex flex-column shadow h-150">
-                {{$book['id']}}---
-                {{$book['title']}}---
-                {{$book['author']}}---
-                {{$book['price']}} zł
-                <form action="getDetails" method="get">
-                    <input type="hidden" name="bookID" value="{{$book['id']}}"/>
-                    <input type="submit" class="btn btn-primary" value="Details">
-                </form>
+            <div class="card d-flex shadow h-150 justify-content-between">
+                <div>
+                    {{$book['id']}}---
+                    {{$book['title']}}---
+                    {{$book['author']}}---
+                    {{$book['price']}} zł</br>
+                    On stock: {{$book['amount']}}
+                </div>
+                <div class="">
+                    <form action="getDetails" method="get" class="d-flex">
+                        <input type="hidden" name="bookID" value="{{$book['id']}}"/>
+                        <input type="submit" class="btn btn-primary" value="Details">
+                    </form>
+                    @if($book['amount'] > 0)
+                    <form action="" method="get" class="d-flex mt-10">
+                        <input type="hidden" name="bookID" value="{{$book['id']}}"/>
+                        <input type="submit" class="btn btn-success" value="Order">
+                    </form>
+                    @else
+                        <input type="submit" class="btn btn-success disabled mt-10" value="Order">
+                    @endif
+                </div>
             </div>
             @endforeach
             

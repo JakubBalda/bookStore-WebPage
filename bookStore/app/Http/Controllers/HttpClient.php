@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Http;
         public function getBooks(){
 
             $response = Http::acceptJson()->get('http://localhost:3000/api/books');
-            $books = json_decode($response,true)['books'];
+            $books = json_decode($response,true);
             
             return view('/books', ['books' => $books]);
         }
