@@ -14,10 +14,9 @@
         <div class="content-wrapper">
             <?php
                 $book = session()->get('book');
-                
             ?>
             @for($i = 0; $i<1; $i++)
-            <div class="card d-flex flex-column shadow h-450">
+            <div class="card d-flex flex-column shadow h-500">
                 
                 <b>Title:</b> {{$book['title']}} </br>
                 <b>Author:</b> {{$book['author']}} </br>
@@ -26,6 +25,16 @@
                 <b>Description:</b> {{$book['description']}}</br></br>
                 <b>On stock:</b> {{$book['amount']}}
                 <button class="btn btn-primary w-100" onclick="location='books'">Back</button>
+
+                @if($book['amount'] > 0)
+                    <form action="" method="get" class="d-flex mt-5">
+                        <input type="hidden" name="bookID" value="{{$book['id']}}"/>
+                        <input type="submit" class="btn btn-success" value="Order">
+                    </form>
+                    @else
+                        </br><b>Book unavailable</b>
+                        <input type="submit" class="btn btn-success disabled mt-10 w-100" value="Order">
+                    @endif
             </div>
             @endfor
             

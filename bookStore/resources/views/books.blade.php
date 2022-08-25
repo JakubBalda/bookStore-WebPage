@@ -21,6 +21,9 @@
                     {{$book['author']}}---
                     {{$book['price']}} zł</br>
                     On stock: {{$book['amount']}}
+                    @if($book['amount'] == 0)
+                        </br><b>unavailable</b>
+                    @endif
                 </div>
                 <div class="">
                     <form action="getDetails" method="get" class="d-flex">
